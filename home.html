@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payoo MFS - Dashboard</title>
+    <!-- DaisyUI and Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #e0e7ff 100%);
+        }
+        /* Hide scrollbars globally */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <!-- Premium Bezel-less iPhone Mockup (Scaled 20% larger: 516px x 1030px) -->
+    <div class="relative w-[516px] h-[1030px] bg-slate-900 rounded-[60px] p-3.5 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.45)] border border-slate-700/80 flex items-center justify-center">
+        <!-- Camera Notch / Dynamic Island -->
+        <div class="absolute top-7 left-1/2 -translate-x-1/2 w-36 h-8 bg-slate-900 rounded-full z-50 flex items-center justify-center border border-slate-800">
+            <div class="w-3 h-3 bg-slate-950 rounded-full absolute right-5"></div>
+        </div>
+        
+        <!-- Screen Display Area -->
+        <div class="w-full h-full bg-slate-50 rounded-[50px] overflow-hidden flex flex-col justify-between relative text-slate-800 no-scrollbar">
+            
+            <!-- Dashboard Header (Spacious, high-end, padded for notch) -->
+            <div class="bg-blue-700 text-white px-8 pt-20 pb-8 rounded-b-[3rem] shadow-lg">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-4">
+                        <div class="avatar placeholder">
+                            <div class="bg-blue-900 text-white rounded-full w-14 h-14 border-2 border-blue-400 flex items-center justify-center font-bold text-lg">
+                                JD
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs text-blue-200 font-semibold tracking-wide">Welcome back,</h4>
+                            <h3 class="font-extrabold text-lg">John Doe</h3>
+                        </div>
+                    </div>
+                    <!-- Logout button -->
+                    <a href="./index.html" class="btn btn-md btn-ghost btn-circle text-white hover:bg-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Current Balance display -->
+                <div class="text-center mt-5 py-2">
+                    <span class="text-xs text-blue-200 block uppercase tracking-widest font-black">Available Balance</span>
+                    <h2 class="text-4xl font-black tracking-tight mt-1.5">৳ <span id="account-balance">4500.00</span></h2>
+                </div>
+            </div>
+
+            <!-- Main dashboard scroll area (Large elements, hidden scrollbar) -->
+            <div class="px-8 mt-8 flex-1 overflow-y-auto no-scrollbar flex flex-col justify-between mb-8">
+                
+                <!-- Quick action features grid -->
+                <div>
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Services</h3>
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <!-- Show Add Money -->
+                        <div onclick="showSectionById('add-money-section')" class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 hover:shadow-md transition-all active:scale-95">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-slate-700">Add Money</span>
+                        </div>
+
+                        <!-- Show Cash Out -->
+                        <div onclick="showSectionById('cash-out-section')" class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center cursor-pointer hover:border-red-500 hover:shadow-md transition-all active:scale-95">
+                            <div class="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-slate-700">Cash Out</span>
+                        </div>
+
+                        <!-- Show Send Money -->
+                        <div onclick="showSectionById('send-money-section')" class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center cursor-pointer hover:border-green-500 hover:shadow-md transition-all active:scale-95">
+                            <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-slate-700">Send Money</span>
+                        </div>
+
+                        <!-- Show Pay Bill -->
+                        <div onclick="showSectionById('pay-bill-section')" class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 hover:shadow-md transition-all active:scale-95">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5h16.5" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-slate-700">Pay Bill</span>
+                        </div>
+
+                        <!-- Show Transactions -->
+                        <div onclick="showSectionById('transaction-section')" class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center cursor-pointer hover:border-teal-500 hover:shadow-md transition-all active:scale-95">
+                            <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-slate-700">History</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive forms with hidden scrollbars -->
+                <div class="flex-1 mt-4">
+                    
+                    <!-- ADD MONEY SECTION -->
+                    <div id="add-money-section" class="bg-white p-6 rounded-[2.5rem] shadow-md border border-slate-100">
+                        <h4 class="font-extrabold text-slate-800 text-base mb-4">Add Money</h4>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Select Bank</span></label>
+                            <select id="add-bank" class="select select-bordered rounded-xl bg-slate-50 text-sm h-11 min-h-0">
+                                <option value="bkash">bKash Linked Account</option>
+                                <option value="visa">Visa Debit Card</option>
+                                <option value="dbbl">DBBL Rocket</option>
+                            </select>
+                        </div>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Account Number</span></label>
+                            <input type="text" id="add-account" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter bank account number" />
+                        </div>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Amount (BDT)</span></label>
+                            <input type="number" id="add-amount" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter amount" />
+                        </div>
+                        <div class="form-control mb-6">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">PIN Code</span></label>
+                            <input type="password" id="add-pin" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter 4-Digit PIN" maxlength="4" />
+                        </div>
+                        <button id="btn-add-money" class="btn btn-primary w-full rounded-2xl bg-blue-700 hover:bg-blue-800 border-none text-white font-extrabold text-sm h-12 shadow-md">Add Money</button>
+                    </div>
+
+                    <!-- CASH OUT SECTION (Hidden by default) -->
+                    <div id="form-cash-out" class="hidden"></div>
+                    <div id="cash-out-section" class="bg-white p-6 rounded-[2.5rem] shadow-md border border-slate-100 hidden">
+                        <h4 class="font-extrabold text-slate-800 text-base mb-4">Cash Out</h4>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Agent Number</span></label>
+                            <input type="tel" id="cashout-agent" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter 11-digit agent number" />
+                        </div>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Amount (BDT)</span></label>
+                            <input type="number" id="cashout-amount" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter amount" />
+                        </div>
+                        <div class="form-control mb-6">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">PIN Code</span></label>
+                            <input type="password" id="cashout-pin" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter 4-Digit PIN" maxlength="4" />
+                        </div>
+                        <button id="btn-cash-out" class="btn btn-error w-full rounded-2xl bg-red-600 hover:bg-red-700 border-none text-white font-extrabold text-sm h-12 shadow-md">Cash Out</button>
+                    </div>
+
+                    <!-- SEND MONEY SECTION (Hidden by default) -->
+                    <div id="send-money-section" class="bg-white p-6 rounded-[2.5rem] shadow-md border border-slate-100 hidden">
+                        <h4 class="font-extrabold text-slate-800 text-base mb-4">Send Money</h4>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Recipient Number</span></label>
+                            <input type="tel" id="send-recipient" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter 11-digit mobile number" />
+                        </div>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Amount (BDT)</span></label>
+                            <input type="number" id="send-amount" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter amount" />
+                        </div>
+                        <div class="form-control mb-6">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">PIN Code</span></label>
+                            <input type="password" id="send-pin" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter 4-Digit PIN" maxlength="4" />
+                        </div>
+                        <button id="btn-send-money" class="btn btn-success w-full rounded-2xl bg-green-600 hover:bg-green-700 border-none text-white font-extrabold text-sm h-12 shadow-md">Send Money</button>
+                    </div>
+
+                    <!-- PAY BILL SECTION (Hidden by default) -->
+                    <div id="pay-bill-section" class="bg-white p-6 rounded-[2.5rem] shadow-md border border-slate-100 hidden">
+                        <h4 class="font-extrabold text-slate-800 text-base mb-4">Pay Utility Bill</h4>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Select Biller</span></label>
+                            <select id="bill-type" class="select select-bordered rounded-xl bg-slate-50 text-sm h-11 min-h-0">
+                                <option value="DESCO">DESCO Electricity</option>
+                                <option value="WASA">Dhaka WASA</option>
+                                <option value="Titas">Titas Gas</option>
+                            </select>
+                        </div>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Biller Customer ID</span></label>
+                            <input type="text" id="bill-account" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter customer ID number" />
+                        </div>
+                        <div class="form-control mb-3">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">Amount (BDT)</span></label>
+                            <input type="number" id="bill-amount" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter amount" />
+                        </div>
+                        <div class="form-control mb-6">
+                            <label class="label py-1"><span class="label-text text-sm font-bold text-slate-500">PIN Code</span></label>
+                            <input type="password" id="bill-pin" class="input input-bordered rounded-xl bg-slate-50 text-sm h-11" placeholder="Enter 4-Digit PIN" maxlength="4" />
+                        </div>
+                        <button id="btn-pay-bill" class="btn btn-secondary w-full rounded-2xl bg-purple-600 hover:bg-purple-700 border-none text-white font-extrabold text-sm h-12 shadow-md">Pay Bill</button>
+                    </div>
+
+                    <!-- TRANSACTION SECTION (Hidden by default) -->
+                    <div id="transaction-section" class="bg-white p-6 rounded-[2.5rem] shadow-md border border-slate-100 hidden">
+                        <h4 class="font-extrabold text-slate-800 text-base mb-4">Transaction History</h4>
+                        <div id="transaction-list" class="flex flex-col gap-3 max-h-[350px] overflow-y-auto no-scrollbar">
+                            <!-- Transactions list (dynamic rows) -->
+                            <p class="text-sm text-slate-400 text-center py-8 font-semibold">No recent transactions.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script Links -->
+    <script src="./js/utilities.js"></script>
+    <script src="./js/addMoney.js"></script>
+    <script src="./js/cashOut.js"></script>
+    <script src="./js/sendMoney.js"></script>
+    <script src="./js/payBill.js"></script>
+</body>
+</html>
