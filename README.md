@@ -1,6 +1,6 @@
 # Payoo MFS | Mobile Financial Services
 
-**Live Demo:** [https://ssiyam0123.github.io/payoo/](https://ssiyam0123.github.io/payoo/)
+**Live Demo:** [https://siyam-io.github.io/payoo/](https://siyam-io.github.io/payoo/)
 
 Payoo is a fully featured, interactive mobile financial services (MFS) wallet simulation designed to work inside a mobile device mockup. Built with Tailwind CSS and DaisyUI, it emulates a modern wallet dashboard with transaction validation, dynamic state management, and real-time transaction tracking.
 
@@ -30,7 +30,7 @@ Payoo is a fully featured, interactive mobile financial services (MFS) wallet si
 
 1. Clone this repository to your local system:
    ```bash
-   git clone https://github.com/ssiyam0123/payoo.git
+   git clone https://github.com/siyam-io/payoo.git
    ```
 2. Navigate into the project folder and open `index.html` in any web browser.
 3. To view or debug local storage persistence, use Google Chrome DevTools (Application Tab -> Local Storage).
