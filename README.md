@@ -1,6 +1,6 @@
-# Payoo MFS | Mobile Financial Services
+﻿# Payoo MFS | Mobile Financial Services
 
-**Live Demo:** [https://siyam-io.github.io/payoo/](https://siyam-io.github.io/payoo/)
+**Live Demo:** [https://siyam-payoo.vercel.app/](https://siyam-payoo.vercel.app/)
 
 Payoo is a fully featured, interactive mobile financial services (MFS) wallet simulation designed to work inside a mobile device mockup. Built with Tailwind CSS and DaisyUI, it emulates a modern wallet dashboard with transaction validation, dynamic state management, and real-time transaction tracking.
 
@@ -39,3 +39,4 @@ Payoo is a fully featured, interactive mobile financial services (MFS) wallet si
 
 - Checked for sensitive environment variables or credentials (`.env`, config keys). None found.
 - Added standard `.gitignore` config to ignore caches, IDE setups, and node modules.
+
